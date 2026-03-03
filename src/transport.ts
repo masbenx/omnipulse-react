@@ -61,9 +61,9 @@ export class Transport {
     public flushErrors(): void {
         if (this.errorQueue.length === 0) return;
         const batch = this.errorQueue.splice(0);
-        this.send('/api/ingest/app-errors', {
-            entries: batch,
-        });
+        for (const error of batch) {
+            this.send('/api/ingest/app-errors', error);
+        }
     }
 
     public flushPerformance(): void {
@@ -140,7 +140,7 @@ export class Transport {
 
         const onUnload = () => {
             this.beaconFlush('/api/ingest/app-logs', this.logQueue, 'entries');
-            this.beaconFlush('/api/ingest/app-errors', this.errorQueue, 'entries');
+            this.beaconFlushErrors('/api/ingest/app-errors', this.errorQueue);
             this.beaconFlush('/api/ingest/app-metrics', this.perfQueue, 'metrics');
         };
 
@@ -165,9 +165,22 @@ export class Transport {
             [wrapperKey]: batch,
         });
 
-        // sendBeacon doesn't support custom headers, so we use a Blob with type
-        // The backend should accept X-Ingest-Key from query param as fallback
-        // For now, we try fetch with keepalive first, fallback to sendBeacon
+        this.sendBeaconPayload(url, payload);
+    }
+
+    private beaconFlushErrors(path: string, queue: any[]): void {
+        if (queue.length === 0) return;
+        const batch = queue.splice(0);
+        const endpoint = this.config.endpoint || 'https://api.omnipulse.cloud';
+        const url = `${endpoint}${path}`;
+
+        for (const error of batch) {
+            const payload = JSON.stringify(error);
+            this.sendBeaconPayload(url, payload);
+        }
+    }
+
+    private sendBeaconPayload(url: string, payload: string): void {
         try {
             fetch(url, {
                 method: 'POST',
