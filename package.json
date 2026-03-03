@@ -10,6 +10,7 @@
     ],
     "scripts": {
         "build": "tsc",
+        "prepare": "npm run build",
         "test": "echo 'No tests configured yet'"
     },
     "keywords": [
