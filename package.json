@@ -1,6 +1,6 @@
 {
     "name": "@omnipulse/react",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Official React SDK for OmniPulse Monitoring — Error tracking, logging, and Web Vitals for React 19+",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
