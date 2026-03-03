@@ -1,0 +1,37 @@
+{
+    "name": "@omnipulse/react",
+    "version": "0.1.0",
+    "description": "Official React SDK for OmniPulse Monitoring — Error tracking, logging, and Web Vitals for React 19+",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist/"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "test": "echo 'No tests configured yet'"
+    },
+    "keywords": [
+        "monitoring",
+        "omnipulse",
+        "react",
+        "error-tracking",
+        "logging",
+        "web-vitals",
+        "apm"
+    ],
+    "author": "OmniPulse Team",
+    "license": "MIT",
+    "peerDependencies": {
+        "react": ">=18.0.0",
+        "react-dom": ">=18.0.0"
+    },
+    "devDependencies": {
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "typescript": "^5.0.0"
+    }
+}
