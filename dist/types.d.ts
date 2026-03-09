@@ -58,7 +58,7 @@ export interface ErrorEntry {
     type: string;
     message: string;
     stack?: string;
-    url?: string;
+    route?: string;
     line?: number;
     column?: number;
     timestamp: string;
