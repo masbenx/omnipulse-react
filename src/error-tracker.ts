@@ -63,7 +63,7 @@ export class ErrorTracker {
             message,
             timestamp: new Date().toISOString(),
             service: this.serviceName,
-            url: typeof window !== 'undefined' ? window.location.href : undefined,
+            route: typeof window !== 'undefined' ? window.location.href : undefined,
             meta,
         };
         this.transport.addError(entry);
@@ -77,7 +77,7 @@ export class ErrorTracker {
                 type: event.error?.name || 'Error',
                 message: event.message || 'Unknown error',
                 stack: event.error?.stack,
-                url: event.filename || window.location.href,
+                route: event.filename || window.location.href,
                 line: event.lineno,
                 column: event.colno,
                 timestamp: new Date().toISOString(),
@@ -96,7 +96,7 @@ export class ErrorTracker {
                 type: 'UnhandledRejection',
                 message: reason?.message || String(reason) || 'Unhandled promise rejection',
                 stack: reason?.stack,
-                url: typeof window !== 'undefined' ? window.location.href : undefined,
+                route: typeof window !== 'undefined' ? window.location.href : undefined,
                 timestamp: new Date().toISOString(),
                 service: this.serviceName,
                 meta: {
@@ -114,7 +114,7 @@ export class ErrorTracker {
             type: error.name || 'Error',
             message: error.message || 'Unknown error',
             stack: error.stack,
-            url: typeof window !== 'undefined' ? window.location.href : undefined,
+            route: typeof window !== 'undefined' ? window.location.href : undefined,
             timestamp: new Date().toISOString(),
             service: this.serviceName,
             meta,
