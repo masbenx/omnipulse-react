@@ -1,3 +1,7 @@
+## [v0.1.3] - 2026-03-15
+### Changed
+- Automated release via script.
+
 ## [v0.1.2] - 2026-03-09
 ### Fixed
 - Align `ErrorEntry` payload fields with backend DTO: `url` → `route`
